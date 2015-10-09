@@ -1,0 +1,13 @@
+<repositories version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name>cavernlay</name>
+    <description>This personal repository contains ebuilds and fixes for packages that I'm interested in</description>
+    <homepage>https://github.com/OursDesCavernes/cavernlay</homepage>
+    <owner>
+      <email>totocoq@yahoo.fr</email>
+      <name>OursDesCavernes</name>
+    </owner>
+    <source type="git">https://github.com/OursDesCavernes/cavernlay.git</source>
+    <source type="git">git@github.com:OursDesCavernes/cavernlay.git</source>
+  </repo>
+</repositories>
