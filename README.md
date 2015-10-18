@@ -14,6 +14,9 @@ Feel free to use and submit stuff.
 * sci-libs/beignet
 * dev-util/amdapp
 
+## AI
+* sci-libs/caffe
+
 ## Games
 * games-strategy/opendungeons
 * games-strategy/spring
