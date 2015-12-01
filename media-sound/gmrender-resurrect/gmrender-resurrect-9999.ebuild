@@ -15,5 +15,5 @@ SLOT="0"
 KEYWORDS="~amd64 ~arm"
 IUSE=""
 
-DEPEND=""
+DEPEND="net-libs/libupnp"
 RDEPEND="${DEPEND}"
