@@ -13,9 +13,13 @@ Feel free to use and submit stuff.
 ## OpenCL
 * sci-libs/beignet
 * dev-util/amdapp
+* sci-libs/clew
+* sci-libs/easycl
 
 ## AI
 * sci-libs/caffe
+* sci-libs/deepcl
+* sci-libs/torch7
 
 ## Games
 * games-strategy/opendungeons
