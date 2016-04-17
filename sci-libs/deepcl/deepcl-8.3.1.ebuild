@@ -18,38 +18,48 @@ fi
 LICENSE="BSD-2"
 SLOT="0"
 KEYWORDS="amd64 ~x86"
-IUSE="debug doc jpeg internal-lua python test"
+IUSE="debug doc jpeg internal-lua python-wrappers python cog prototyping png maintainer test"
 
 PYTHON_COMPAT=( python2_7 python3_4 )
 
 RDEPEND="virtual/fortran"
 DEPEND="${RDEPEND}
-   jpeg? ( virtual/jpeg )
-   !internal-lua? ( dev-lang/lua )
-   python? ( dev-lang/python )
-   sci-libs/clblas
-   >=dev-util/cmake-2.8.7"
+	sci-libs/easycl
+	jpeg? ( virtual/jpeg )
+	!internal-lua? ( >=dev-lang/lua-5.1 )
+	python? ( dev-lang/python )
+	python-wrappers? ( dev-lang/python )
+	sci-libs/clblas
+	>=dev-util/cmake-2.8.7"
 
+CMAKE_REMOVE_MODULES="yes"
+CMAKE_REMOVE_MODULES_LIST="build_EasyCL build_clBLAS"
+
+PATCHES=( "${FILESDIR}"/${P}-remove_internal_easycl_clbas.patch )
+
+
+src_prepare() {
+	epatch "${PATCHES}"
+
+	echo "include_directories(/usr/include/easycl)">>${S}/CMakeLists.txt
+}
 
 src_configure() {
-    local mycmakeargs=("-DMAINTAINER_OPTIONS=ON")
-    if use debug; then
-		local mycmakeargs+=("-DCMAKE_BUILD_TYPE=Debug")
-	else
-		local mycmakeargs+=("-DCMAKE_BUILD_TYPE=Release")
-    fi
-	mycmakeargs+=($(cmake-utils_use_build jpeg JPEG_SUPPORT))
-	mycmakeargs+=($(cmake-utils_use_build internal-lua INTERNAL_LUA))
-	mycmakeargs+=($(cmake-utils_use_build python PYTHON_WRAPPERS))
+    mycmakeargs=("-DMAINTAINER_OPTIONS=ON"
+		$(cmake-utils_use_build jpeg JPEG_SUPPORT)
+		$(cmake-utils_use_build internal-lua INTERNAL_LUA)
+		$(cmake-utils_use_build python PYTHON_WRAPPERS)
+		"-DCMAKE_BUILD_TYPE=Release")
+#    if use debug; then
+#		mycmakeargs+=("-DCMAKE_BUILD_TYPE=Debug")
+#	else
+#		mycmakeargs+=("-DCMAKE_BUILD_TYPE=Release")
+#    fi
 
 	cmake-utils_src_configure
 }
 
 src_install() {
 	cmake-utils_src_install
-#	dodir "usr/$(get_libdir)/OpenCL/vendors/${PN}"
-#	dosym "/usr/$(get_libdir)/${PN}/libcl.so" "usr/$(get_libdir)/OpenCL/vendors/${PN}/libOpenCL.so"
-#	dosym "/usr/$(get_libdir)/${PN}/libcl.so" "usr/$(get_libdir)/OpenCL/vendors/${PN}/libOpenCL.so.1"
-#	dosym "/usr/$(get_libdir)/${PN}/libcl.so" "usr/$(get_libdir)/OpenCL/vendors/${PN}/libOpenCL.so.1.2"
 }
 
