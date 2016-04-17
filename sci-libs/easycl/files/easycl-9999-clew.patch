@@ -1,0 +1,23 @@
+Common subdirectories: easycl-9999/cmake and easycl-9999.new/cmake
+diff -u easycl-9999/CMakeLists.txt easycl-9999.new/CMakeLists.txt
+--- easycl-9999/CMakeLists.txt	2016-04-15 16:37:03.415572322 +0200
++++ easycl-9999.new/CMakeLists.txt	2016-04-15 17:07:23.927391821 +0200
+@@ -64,11 +64,6 @@
+ 
+ SET(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+ 
+-if(USE_CLEW)
+-    INCLUDE("${CMAKE_MODULE_PATH}/build_clew.cmake")
+-    INCLUDE_DIRECTORIES(${clew_INCLUDE_DIRS})
+-endif()
+-
+ if(PROVIDE_LUA_ENGINE)
+     file(STRINGS thirdparty/lua-5.1.5/files.txt lua_src1)
+     foreach(source ${lua_src1})
+Common subdirectories: easycl-9999/cog-batteries and easycl-9999.new/cog-batteries
+Common subdirectories: easycl-9999/doc and easycl-9999.new/doc
+Common subdirectories: easycl-9999/.git and easycl-9999.new/.git
+Common subdirectories: easycl-9999/templates and easycl-9999.new/templates
+Common subdirectories: easycl-9999/test and easycl-9999.new/test
+Common subdirectories: easycl-9999/thirdparty and easycl-9999.new/thirdparty
+Common subdirectories: easycl-9999/util and easycl-9999.new/util
