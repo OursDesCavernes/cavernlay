@@ -4,24 +4,28 @@
 
 EAPI=5
 
-inherit cmake-utils eutils git-r3
+inherit cmake-utils eutils
 
 DESCRIPTION="Beignet is an open source implementation of the OpenCL specification for Intel GPUs"
 HOMEPAGE="http://www.freedesktop.org/wiki/Software/Beignet/"
-EGIT_REPO_URI="git://anongit.freedesktop.org/beignet"
-if [ "${PV%9999}" = "${PV}" ]; then
-	EGIT_COMMIT="Release_v${PV}"
-fi
+#EGIT_REPO_URI="git://anongit.freedesktop.org/beignet"
+SRC_URI=https://01.org/sites/default/files/${P}-source.tar.gz
+#if [ "${PV%9999}" = "${PV}" ]; then
+#	EGIT_COMMIT="Release_v${PV}"
+#fi
+
+MY_P=Beignet-${PV}-Source
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 ~x86"
 IUSE="debug ocl-icd"
 
 RDEPEND="virtual/opencl"
 DEPEND="${RDEPEND}
    ocl-icd? ( dev-libs/ocl-icd )"
 
+S="${WORKDIR}/${MY_P}"
 
 src_configure() {
     if use debug; then
