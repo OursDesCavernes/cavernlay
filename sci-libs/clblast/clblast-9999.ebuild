@@ -13,7 +13,7 @@ if [ "${PV%9999}" = "${PV}" ]; then
 	EGIT_COMMIT="${PV}"
 	KEYWORDS="amd64 ~x86"
 else
-	EGIT_COMMIT="HEAD"
+#	EGIT_COMMIT="HEAD"
 	EGIT_BRANCH="development"
 	KEYWORDS="~amd64 ~x86"
 fi
