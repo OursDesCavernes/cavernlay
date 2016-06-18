@@ -197,7 +197,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.0.24-saned_pidfile_location.patch
 	epatch "${FILESDIR}"/${PN}-1.0.25-disable-usb-tests.patch
 	if [[ ${PV} == "9999" ]] ; then
-		mv configure.{in,ac} || die
+#		mv configure.{in,ac} || die
 		AT_NOELIBTOOLIZE=yes eautoreconf
 	fi
 
