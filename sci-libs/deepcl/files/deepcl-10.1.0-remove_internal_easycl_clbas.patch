@@ -1,0 +1,39 @@
+Common subdirectories: deepcl-8.3.1/cl and deepcl-8.3.1.new/cl
+Common subdirectories: deepcl-8.3.1/clMathLibraries and deepcl-8.3.1.new/clMathLibraries
+Common subdirectories: deepcl-8.3.1/cmake and deepcl-8.3.1.new/cmake
+diff -u deepcl-8.3.1/CMakeLists.txt deepcl-8.3.1.new/CMakeLists.txt
+--- deepcl-8.3.1/CMakeLists.txt	2016-04-16 14:14:18.229823734 +0200
++++ deepcl-8.3.1.new/CMakeLists.txt	2016-04-16 16:35:12.697862670 +0200
+@@ -63,15 +63,15 @@
+ 
+ SET(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+ 
+-INCLUDE("${CMAKE_MODULE_PATH}/build_EasyCL.cmake")
+-INCLUDE_DIRECTORIES(${EASYCL_INCLUDE_DIRS})
++#INCLUDE("${CMAKE_MODULE_PATH}/build_EasyCL.cmake")
++#INCLUDE_DIRECTORIES(${EASYCL_INCLUDE_DIRS})
+ #LINK_DIRECTORIES(${EASYCL_LIBRARIES})
+ 
+-INCLUDE("${CMAKE_MODULE_PATH}/build_clBLAS.cmake")
+-INCLUDE_DIRECTORIES(${CLBLAS_INCLUDE_DIRS})
++#INCLUDE("${CMAKE_MODULE_PATH}/build_clBLAS.cmake")
++#INCLUDE_DIRECTORIES(${CLBLAS_INCLUDE_DIRS})
+ ## TARGET_link_LIBRARIES(clBLAS ${EASYCL_LIBRARIES})
+ 
+-ADD_DEPENDENCIES(clBLAS-external EasyCL)
++#ADD_DEPENDENCIES(clBLAS-external EasyCL)
+ 
+ include_directories(.)
+ include_directories(src)
+Common subdirectories: deepcl-8.3.1/cog-batteries and deepcl-8.3.1.new/cog-batteries
+Common subdirectories: deepcl-8.3.1/data and deepcl-8.3.1.new/data
+Common subdirectories: deepcl-8.3.1/doc and deepcl-8.3.1.new/doc
+Common subdirectories: deepcl-8.3.1/EasyCL and deepcl-8.3.1.new/EasyCL
+Common subdirectories: deepcl-8.3.1/.git and deepcl-8.3.1.new/.git
+Common subdirectories: deepcl-8.3.1/jenkins and deepcl-8.3.1.new/jenkins
+Common subdirectories: deepcl-8.3.1/prototyping and deepcl-8.3.1.new/prototyping
+Common subdirectories: deepcl-8.3.1/python and deepcl-8.3.1.new/python
+Common subdirectories: deepcl-8.3.1/src and deepcl-8.3.1.new/src
+Common subdirectories: deepcl-8.3.1/test and deepcl-8.3.1.new/test
+Common subdirectories: deepcl-8.3.1/thirdparty and deepcl-8.3.1.new/thirdparty
+Common subdirectories: deepcl-8.3.1/travis and deepcl-8.3.1.new/travis
