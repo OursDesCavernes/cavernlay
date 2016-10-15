@@ -17,7 +17,7 @@ fi
 
 LICENSE="MPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 ~x86"
 IUSE="debug doc +clew test internal-lua"
 
 RDEPEND="virtual/fortran"
