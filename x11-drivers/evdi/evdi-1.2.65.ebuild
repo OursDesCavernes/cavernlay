@@ -13,7 +13,7 @@ LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 
-SRC_URI="http://localhost/${P}-src.tar.gz"
+SRC_URI="http://localhost/${P}.tar.gz"
 
 #EGIT_REPO_URI="git://github.com/DisplayLink/evdi.git"
 #EGIT_COMMIT="v${PV}"
