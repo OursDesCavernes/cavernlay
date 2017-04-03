@@ -1,0 +1,10 @@
+[Unit]
+Description=AMDGPU fan management daemon
+
+[Service]
+ExecStart=/usr/sbin/amdgpufand
+PrivateTmp=true
+MemoryDenyWriteExecute=true
+
+[Install]
+WantedBy=multi-user.target
