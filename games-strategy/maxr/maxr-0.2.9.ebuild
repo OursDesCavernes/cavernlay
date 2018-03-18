@@ -11,7 +11,7 @@ SRC_URI="http://www.maxr.org/downloads/${P}.tar.gz"
 
 LICENSE="GPL-2 FDL-1.2+"
 SLOT="0"
-KEYWORDS="amd64 ppc x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="dedicated"
 
 DEPEND=">=dev-util/cmake-2.8
