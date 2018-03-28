@@ -19,7 +19,7 @@ IUSE="fail"
 
 LICENSE="AMD GPL-2 QPL-1.0"
 KEYWORDS="~amd64"
-SLOT="1"
+SLOT="0"
 
 RDEPEND="
 	app-eselect/eselect-opencl
