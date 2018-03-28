@@ -13,19 +13,19 @@ SRC_URI=""
 LICENSE=""
 SLOT="0"
 KEYWORDS="amd64 ~ppc x86"
-CARDS=( fglrx nvidia intel )
-IUSE="${CARDS[@]/#/video_cards_}"
+CARDS=( fglrx nvidia intel amdgpu)
+IUSE="${CARDS[@]/#/video_cards_} mesa"
 
 DEPEND=""
 # intel-ocl-sdk is amd64-only
 RDEPEND="app-eselect/eselect-opencl
-	|| (
-		>=media-libs/mesa-9.1.6[opencl,${MULTILIB_USEDEP}]
-		video_cards_fglrx? (
-			>=x11-drivers/ati-drivers-12.1-r1 )
-		video_cards_nvidia? (
-			>=x11-drivers/nvidia-drivers-290.10-r2 )
-		abi_x86_64? ( !abi_x86_32? ( dev-util/intel-ocl-sdk ) )
-		video_cards_intel? (
-			sci-libs/beignet )
-	)"
+	mesa? ( >=media-libs/mesa-9.1.6[opencl,${MULTILIB_USEDEP}] )
+	video_cards_fglrx? (
+		>=x11-drivers/ati-drivers-12.1-r1 )
+	video_cards_nvidia? (
+		>=x11-drivers/nvidia-drivers-290.10-r2 )
+	abi_x86_64? ( !abi_x86_32? ( dev-util/intel-ocl-sdk ) )
+	video_cards_intel? (
+		dev-libs/beignet )
+	video_cards_amdgpu? (	
+		dev-libs/amdgpu-pro-opencl )"
