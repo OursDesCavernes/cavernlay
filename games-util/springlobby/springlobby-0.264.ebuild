@@ -1,63 +1,42 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI=5
 
-inherit cmake-utils eutils flag-o-matic games
+WX_GTK_VER="3.0"
+inherit cmake-utils eutils flag-o-matic wxwidgets
 
-DESCRIPTION="lobby client for spring rts engine"
+DESCRIPTION="Lobby client for spring rts engine"
 HOMEPAGE="http://springlobby.info"
 SRC_URI="http://www.springlobby.info/tarballs/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-RESTRICT="nomirror"
-IUSE="+translation debug +libnotify"
-
+RESTRICT="mirror"
+IUSE="debug +libnotify +nls"
 
 RDEPEND="
-        >=dev-libs/boost-1.35
-	x11-libs/wxGTK:3.0
-	net-misc/curl
-	libnotify? (    x11-libs/libnotify )
-	translation? ( sys-devel/gettext )
+	>=dev-libs/boost-1.35
 	media-libs/alure
+	net-misc/curl
+	x11-libs/wxGTK:$WX_GTK_VER[X]
+	libnotify? ( x11-libs/libnotify )
 "
 
 DEPEND="${RDEPEND}
-	>=sys-devel/gcc-4.7
-	>=dev-util/cmake-2.8.11
+	nls? ( sys-devel/gettext )
 "
 
-src_configure() {
-	if ! use translation ; then
-		mycmakeargs="${mycmakeargs} -DOPTION_TRANSLATION_SUPPORT=OFF"
-	fi
-	if use libnotify ; then
-		mycmakeargs="${mycmakeargs} -DOPTION_NOTIFY=ON"
-	fi
+pkg_setup() {
+	setup-wxwidgets
+}
 
-	mycmakeargs="${mycmakeargs} -DAUX_VERSION=(Gentoo,$ARCH) -DCMAKE_INSTALL_PREFIX=/usr/games/"
+src_configure() {
+	local mycmakeargs=(
+		-DOPTION_TRANSLATION_SUPPORT=$(usex nls ON OFF)
+		-DOPTION_NOTIFY=$(usex libnotify ON OFF)
+		-DAUX_VERSION="(Gentoo,$ARCH)"
+		)
 	cmake-utils_src_configure
 }
-
-src_compile () {
-	cmake-utils_src_compile
-}
-
-src_install() {
-	cmake-utils_src_install
-	prepgamesdirs
-	# bad
-	dodir /usr/share/games/icons/hicolor/scalable/apps/
-	mv ${D}/usr/games/share/icons/hicolor/scalable/apps/springlobby.svg ${D}/usr/share/games/icons/hicolor/scalable/apps/springlobby.svg
-	rm ${D}/usr/share/games/pixmaps/ -fr
-	dodir /usr/share/games/applications/
-	mv ${D}/usr/games/share/applications/springlobby.desktop ${D}/usr/share/games/applications/springlobby.desktop
-	rm ${D}/usr/games/share/applications/ -fr
-	dodir /etc/env.d/
-	echo 'XDG_DATA_DIRS="/usr/share/games"' >> ${D}/etc/env.d/99games
-}
-
